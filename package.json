@@ -5,8 +5,8 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "...",
     "@supabase/supabase-js": "...",
-    "dotenv": "..."
+    "dotenv": "file:...",
+    "express": "..."
   }
 }
