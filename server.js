@@ -1,10 +1,4 @@
 require('dotenv').config()
-```
-
-Then create a `.gitignore` file and put this in it:
-```
-node_modules
-.env
 
 const express = require('express')
 const { createClient } = require('@supabase/supabase-js')
@@ -12,7 +6,6 @@ const { createClient } = require('@supabase/supabase-js')
 const app = express()
 app.use(express.json())
 
-// paste your real values here
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_KEY
@@ -31,7 +24,6 @@ app.post('/api/payment', async (req, res) => {
 
   const cashback = amount * 0.005
 
-  // save to database
   const { data, error } = await supabase
     .from('transactions')
     .insert({
@@ -45,8 +37,6 @@ app.post('/api/payment', async (req, res) => {
   if (error) {
     return res.status(500).json({ error: error.message })
   }
-
-  console.log(`Payment saved: Rs. ${amount} for ${shop}`)
 
   res.json({
     success: true,
@@ -72,3 +62,6 @@ app.get('/api/transactions', async (req, res) => {
 app.listen(process.env.PORT || 3000, () => {
   console.log('Server running')
 })
+
+node_modules
+.env
