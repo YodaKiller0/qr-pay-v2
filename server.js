@@ -62,6 +62,3 @@ app.get('/api/transactions', async (req, res) => {
 app.listen(process.env.PORT || 3000, () => {
   console.log('Server running')
 })
-
-node_modules
-.env
