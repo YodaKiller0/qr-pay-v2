@@ -1,3 +1,11 @@
+require('dotenv').config()
+```
+
+Then create a `.gitignore` file and put this in it:
+```
+node_modules
+.env
+
 const express = require('express')
 const { createClient } = require('@supabase/supabase-js')
 
@@ -6,8 +14,8 @@ app.use(express.json())
 
 // paste your real values here
 const supabase = createClient(
-  'https://zidlsqxizqjkovgfpwkw.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InppZGxzcXhpenFqa292Z2Zwd2t3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwNDk3MDgsImV4cCI6MjA5MDYyNTcwOH0.0LQnzgfAoVCybYD6VWMrGDwDGs3E9kDMv8fz0NpSQnw'
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_KEY
 )
 
 app.get('/', (req, res) => {
@@ -61,6 +69,6 @@ app.get('/api/transactions', async (req, res) => {
   res.json(data)
 })
 
-app.listen(3000, () => {
-  console.log('Server running on port 3000')
+app.listen(process.env.PORT || 3000, () => {
+  console.log('Server running')
 })
